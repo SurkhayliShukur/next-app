@@ -20,3 +20,8 @@ export interface AddPost {
 }
 //GET
 export interface GetPost extends AxiosPromise<PostDataType[]>{}
+
+//GETSINGLE
+export interface GetSinglePost {
+    (id: string | number): AxiosPromise<PostDataType>
+}
