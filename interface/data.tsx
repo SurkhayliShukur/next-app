@@ -16,12 +16,19 @@ export interface InitialStateType extends Omit<PostDataType, "id"> { }
 
 //ADD
 export interface AddPost {
-    (newPost: InitialStateType):AxiosPromise<PostDataType>
+    (newPost: InitialStateType): AxiosPromise<PostDataType>
 }
 //GET
-export interface GetPost extends AxiosPromise<PostDataType[]>{}
+export interface GetPost extends AxiosPromise<PostDataType[]> { }
 
 //GETSINGLE
 export interface GetSinglePost {
     (id: string | number): AxiosPromise<PostDataType>
 }
+//EDIT
+export interface EditPost {
+    (id: string | number,
+        updateProduct: Partial<InitialStateType>
+    ): AxiosPromise<PostDataType>
+}
+

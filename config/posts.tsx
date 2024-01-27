@@ -1,6 +1,6 @@
 import { ENDPOINT } from "../shared/constant/endpoint"
 import { instanceAxios } from "../shared/api/instanceAxios"
-import { AddPost, GetPost, GetSinglePost } from "../interface/data"
+import { AddPost, GetPost, GetSinglePost, EditPost } from "../interface/data"
 
 
 //ADD
@@ -20,4 +20,7 @@ export const getSinglePost: GetSinglePost = (id) => {
     return instanceAxios({
         method: "GET", url: ENDPOINT.POST_ID(id)
     })
+}
+export const editPost:EditPost = (id,updatePost) => {
+    return instanceAxios({method:"PUT", url:ENDPOINT.POST_ID(id), data:updatePost})
 }

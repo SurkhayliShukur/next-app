@@ -27,13 +27,23 @@ const Detail: React.FC<InferGetServerSidePropsType<typeof getServerSideProps>> =
           </h2>
           <p className="text-xl text-sky-300 my-4">{post?.body}</p>
           <div className="card-actions justify-end">
+            <div className='flex justify-between items-center'>
             <button
-              className="btn btn-secondary text-gray-200 px-10 text-3xl"
+              className="btn btn-secondary text-gray-200 px-10 text-3xl m-2"
               onClick={() => push(`${query.id}/${ROUTER.Action}`)}
             >
               Actions
             </button>
+            <button
+              className="btn btn-primary text-gray-200 px-10 text-3xl"
+              onClick={() => push(`${ROUTER.Home}`)}
+            >
+              Back Home
+            </button>
+            </div>
+          
           </div>
+         
         </div>
         </div>
         </>
