@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from "next/router"
 import { InitialStateType } from '@/interface/data'
 import { useQuery, useMutation } from 'react-query'
@@ -49,6 +49,14 @@ const Action: React.FC = () => {
             [name]: value
         }))
     }
+    const handleEditPost = async () => {
+        mutation.mutate();
+      };
+    useEffect(() => {
+        if (data) {
+          setEdit(data.data);
+        }
+      }, [data]);
 
     return (
         <>
@@ -95,7 +103,7 @@ const Action: React.FC = () => {
                         <button
                             className='btn btn-accent mt-5 w-full text-xl text-gray-800'
                             // disabled={!isFormValid()}
-                            onClick={() => mutation.mutate}
+                            onClick={handleEditPost}
                         >
                             {mutation.isLoading ? "Updating Post..." : "Update Post"}
                         </button>

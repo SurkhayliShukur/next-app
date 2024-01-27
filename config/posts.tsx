@@ -21,6 +21,7 @@ export const getSinglePost: GetSinglePost = (id) => {
         method: "GET", url: ENDPOINT.POST_ID(id)
     })
 }
-export const editPost:EditPost = (id,updatePost) => {
-    return instanceAxios({method:"PUT", url:ENDPOINT.POST_ID(id), data:updatePost})
+//EDIT
+export const editPost: EditPost = (id, updatePost) => {
+    return instanceAxios({ method: "PUT", url: ENDPOINT.POST_ID(id), data: updatePost })
 }
