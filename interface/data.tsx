@@ -31,4 +31,7 @@ export interface EditPost {
         updateProduct: Partial<InitialStateType>
     ): AxiosPromise<PostDataType>
 }
-
+//DELETE 
+export interface DeletePost {
+    (id: string | number): AxiosPromise<void>
+}

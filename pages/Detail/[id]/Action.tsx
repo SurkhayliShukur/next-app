@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from "next/router"
 import { InitialStateType } from '@/interface/data'
 import { useQuery, useMutation } from 'react-query'
-import { editPost, getSinglePost } from '@/config/posts'
+import { editPost, getSinglePost, deletePost } from '@/config/posts'
 import { toast } from "react-toastify"
 import { ROUTER } from "../../../shared/constant/router"
 import moment from 'moment'
 import Layout from '@/shared/components/Layout'
+import { useQueryClient } from 'react-query'
+import Delete from '@/pages/Delete'
 
 const Action: React.FC = () => {
     const createDate = moment().valueOf()
@@ -18,7 +20,9 @@ const Action: React.FC = () => {
     }
     const { push, query } = useRouter()
     const [edit, setEdit] = useState<InitialStateType>(initialState)
-    const postId = query.id as string | number
+    const [deleteModal, setDeleteModal] = useState<boolean>(false)
+    const postId = query.id as string | number;
+    const queryClient = useQueryClient()
 
     const { data, isError, isLoading } = useQuery({
         queryKey: ["SinglePost", postId],
@@ -42,6 +46,26 @@ const Action: React.FC = () => {
         },
     })
 
+    const deleteMutation = useMutation(() => deletePost(postId), {
+        onSuccess: () => {
+            queryClient.invalidateQueries(["SinglePost", postId])
+            setDeleteModal(false)
+            toast.success("Post updated successfully", {
+                autoClose: 1000
+            })
+            setTimeout(() => {
+                push(ROUTER.Home)
+            }, 1500)
+
+        },
+        onError: (error) => {
+            console.error("Error deleting post:", error);
+            toast.error("Error deleting post", {
+                autoClose: 1000,
+            });
+        },
+    })
+
     const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setEdit((prevProduct) => ({
@@ -51,12 +75,18 @@ const Action: React.FC = () => {
     }
     const handleEditPost = async () => {
         mutation.mutate();
-      };
+    };
+    const handleDeletePost = async () => {
+        deleteMutation.mutate();
+    };
+    const handleClose = () => {
+        setDeleteModal(false)
+    }
     useEffect(() => {
         if (data) {
-          setEdit(data.data);
+            setEdit(data.data);
         }
-      }, [data]);
+    }, [data]);
 
     return (
         <>
@@ -102,11 +132,21 @@ const Action: React.FC = () => {
                         </div>
                         <button
                             className='btn btn-accent mt-5 w-full text-xl text-gray-800'
-                            // disabled={!isFormValid()}
                             onClick={handleEditPost}
                         >
                             {mutation.isLoading ? "Updating Post..." : "Update Post"}
                         </button>
+                        <button
+                            className='btn btn-accent mt-5 w-full text-xl text-gray-800'
+                            onClick={() => setDeleteModal(true)}
+                        >
+                            Delete
+                        </button>
+                        <Delete
+                            deleteModal={deleteModal}
+                            handleClose = {handleClose}
+                            onDelete={handleDeletePost}
+                        />
                     </div>
                 </div>
 
