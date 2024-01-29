@@ -137,7 +137,7 @@ const Action: React.FC = () => {
                             {mutation.isLoading ? "Updating Post..." : "Update Post"}
                         </button>
                         <button
-                            className='btn btn-accent mt-5 w-full text-xl text-gray-800'
+                            className='btn btn-error mt-3 w-full text-xl text-gray-800'
                             onClick={() => setDeleteModal(true)}
                         >
                             Delete

@@ -8,11 +8,11 @@
       "create_at": 1706113030507
     },
     {
-      "id": "8768",
-      "title": "sssss2",
-      "body": "ssssssssss",
-      "image": "https://images.unsplash.com/photo-1703442701300-cb06c58378a2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "create_at": 1706113283390
+      "id": "7075",
+      "title": "newww",
+      "body": "Next.js is a React framework for building full-stack web applications. You use React Components to build user interfaces, and Next.js for additional features and optimizations.  Under the hood, Next.js also abstracts and automatically configures tooling needed for React, like bundling, compiling, and more. This allows you to focus on building your application instead of spending time with configuration.  Whether you're an individual developer or part of a larger team, Next.js can help you build interactive, dynamic, and fast React applications.",
+      "image": "https://images.unsplash.com/photo-1510878933023-e2e2e3942fb0?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "create_at": 1706469360189
     }
   ]
 }
